@@ -1,7 +1,7 @@
 import os
 import xlwings as xw
 
-sdfsdafasdf
+
 
 os.chdir("/Users/arvid/Desktop")
 wb = xw.Book("DOT Circuits tracking.xls")
