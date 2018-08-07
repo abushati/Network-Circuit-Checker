@@ -1,0 +1,172 @@
+
+390Kent-Ave_R#sho int
+Embedded-Service-Engine0/0 is administratively down, line protocol is down 
+  Hardware is Embedded Service Engine, address is 0000.0000.0000 (bia 0000.0000.0000)
+  MTU 1500 bytes, BW 10000 Kbit/sec, DLY 1000 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/64/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 input packets with dribble condition detected
+     0 packets output, 0 bytes, 0 underruns
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet0/0 is up, line protocol is up 
+  Hardware is CN Gigabit Ethernet, address is 885a.9282.c310 (bia 885a.9282.c310)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1Gbps, media type is RJ45
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:00, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 99000 bits/sec, 71 packets/sec
+  5 minute output rate 825000 bits/sec, 95 packets/sec
+     635594262 packets input, 1019613116 bytes, 0 no buffer
+     Received 30603829 broadcasts (16232 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     340 input errors, 0 CRC, 0 frame, 340 overrun, 0 ignored
+     0 watchdog, 10758547 multicast, 0 pause input
+     661263325 packets output, 1087120135 bytes, 0 underruns
+     0 output errors, 0 collisions, 0 interface resets
+     531106 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+GigabitEthernet0/0.1 is up, line protocol is up 
+  Hardware is CN Gigabit Ethernet, address is 885a.9282.c310 (bia 885a.9282.c310)
+  Description: ***Data_390Kent***
+  Internet address is 10.135.98.3/24
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation 802.1Q Virtual LAN, Vlan ID  98.
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Keepalive set (10 sec)
+  Last clearing of "show interface" counters never
+GigabitEthernet0/0.2 is up, line protocol is up 
+  Hardware is CN Gigabit Ethernet, address is 885a.9282.c310 (bia 885a.9282.c310)
+  Description: ***Citytime***
+  Internet address is 192.168.234.193/30
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation 802.1Q Virtual LAN, Vlan ID  320.
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Keepalive set (10 sec)
+  Last clearing of "show interface" counters never
+GigabitEthernet0/0.3 is up, line protocol is up 
+  Hardware is CN Gigabit Ethernet, address is 885a.9282.c310 (bia 885a.9282.c310)
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation 802.1Q Virtual LAN, Vlan ID  1.
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Keepalive set (10 sec)
+  Last clearing of "show interface" counters never
+GigabitEthernet0/1 is up, line protocol is up 
+  Hardware is CN Gigabit Ethernet, address is 885a.9282.c311 (bia 885a.9282.c311)
+  Description: ***VOIP_390Kent***
+  Internet address is 10.135.99.3/24
+  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation ARPA, loopback not set
+  Keepalive set (10 sec)
+  Full Duplex, 1Gbps, media type is RJ45
+  output flow-control is unsupported, input flow-control is unsupported
+  ARP type: ARPA, ARP Timeout 04:00:00
+  Last input 00:00:53, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/40 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     72401572 packets input, 3813726984 bytes, 0 no buffer
+     Received 306120 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored
+     0 watchdog, 265561 multicast, 0 pause input
+     70885329 packets output, 3059734872 bytes, 0 underruns
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 babbles, 0 late collision, 0 deferred
+     0 lost carrier, 0 no carrier, 0 pause output
+     0 output buffer failures, 0 output buffers swapped out
+Serial0/0/0 is up, line protocol is up 
+  Hardware is GT96K with integrated T1 CSU/DSU
+  Description: Netname-mtc6w2tr04p07 Circuit-74DHZA412741
+  Internet address is 192.168.147.142/30
+  MTU 1500 bytes, BW 1544 Kbit/sec, DLY 20000 usec, 
+     reliability 255/255, txload 17/255, rxload 134/255
+  Encapsulation HDLC, loopback not set
+  Keepalive set (10 sec)
+  Last input 00:00:00, output 00:00:00, output hang never
+  Last clearing of "show interface" counters never
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 293683
+  Queueing strategy: Class-based queueing
+  Output queue: 0/1000/293642 (size/max total/drops)
+  5 minute input rate 816000 bits/sec, 96 packets/sec
+  5 minute output rate 106000 bits/sec, 72 packets/sec
+     745003220 packets input, 510549778 bytes, 0 no buffer
+     Received 1892856 broadcasts (0 IP multicasts)
+     11321 runts, 1 giants, 0 throttles 
+     24825 input errors, 11345 CRC, 0 frame, 15 overrun, 0 ignored, 2144 abort
+     708801605 packets output, 354896645 bytes, 0 underruns
+     0 output errors, 0 collisions, 9 interface resets
+     3 unknown protocol drops
+     0 output buffer failures, 0 output buffers swapped out
+     3 carrier transitions
+     DCD=up  DSR=up  DTR=up  RTS=up  CTS=up
+
+Tunnel0 is up, line protocol is up 
+  Hardware is Tunnel
+  Description: Pim Register Tunnel (Encap) for RP 10.217.254.1
+  Interface is unnumbered. Using address of Serial0/0/0 (192.168.147.142)
+  MTU 17912 bytes, BW 100 Kbit/sec, DLY 50000 usec, 
+     reliability 255/255, txload 1/255, rxload 1/255
+  Encapsulation TUNNEL, loopback not set
+  Keepalive not set
+  Tunnel linestate evaluation up
+  Tunnel source 192.168.147.142 (Serial0/0/0), destination 10.217.254.1
+   Tunnel Subblocks:
+      src-track:
+         Tunnel0 source tracking subblock associated with Serial0/0/0
+          Set of tunnels with source Serial0/0/0, 1 member (includes iterators), on interface <OK>
+  Tunnel protocol/transport PIM/IPv4
+  Tunnel TTL 255
+  Tunnel transport MTU 1472 bytes
+  Tunnel is transmit only
+  Tunnel transmit bandwidth 8000 (kbps)
+  Tunnel receive bandwidth 8000 (kbps)
+  Last input never, output never, output hang never
+  Last clearing of "show interface" counters 26w2d
+  Input queue: 0/75/0/0 (size/max/drops/flushes); Total output drops: 0
+  Queueing strategy: fifo
+  Output queue: 0/0 (size/max)
+  5 minute input rate 0 bits/sec, 0 packets/sec
+  5 minute output rate 0 bits/sec, 0 packets/sec
+     0 packets input, 0 bytes, 0 no buffer
+     Received 0 broadcasts (0 IP multicasts)
+     0 runts, 0 giants, 0 throttles 
+     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort
+     0 packets output, 0 bytes, 0 underruns
+     0 output errors, 0 collisions, 0 interface resets
+     0 unknown protocol drops
+     0 output buffer failures, 0 output buffers swapped out
