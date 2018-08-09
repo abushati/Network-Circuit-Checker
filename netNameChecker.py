@@ -2,19 +2,16 @@ import os
 import xlwings as xw
 
 
-
 os.chdir("/Users/arvid/Desktop")
 wb = xw.Book("DOT Circuits tracking.xls")
 sheet = wb.sheets("Circuit & IP info")
 
 
 def findDescription():
-
 	counter = 0
 	for line in siteFile:
 		#print(line)
-		#print(counter)
-
+		#print(counter
 		counter += 1
 		if "Description" in line and counter < 4:
 			interfaceDescription = line.split(" ")
@@ -85,8 +82,6 @@ def checkNetName(i,Netname):
 	
 
 	
-
-
 siteFile = open("390 Kent Ave rt", "r")
 combo = []
 for line in siteFile:
