@@ -1,35 +1,50 @@
 import os
 import xlwings as xw
+import re
 
 
-os.chdir("/Users/arvid/Desktop")
-wb = xw.Book("DOT Circuits tracking.xls")
+
+
+os.chdir("/Users/arvid/Desktop/Router Information")
+wb = xw.Book("/Users/arvid/Desktop/DOT Circuits tracking.xls")
 sheet = wb.sheets("Circuit & IP info")
 
 
-def findDescription():
+def findDescription(siteFile,combo):
+
 	counter = 0
 	for line in siteFile:
 		#print(line)
-		#print(counter
+		
 		counter += 1
-		if "Description" in line and counter < 4:
+		#print(counter)
+		#print (line)
+		if counter < 5 and "  Description:" in line:
+			#print("its in a line")
 			interfaceDescription = line.split(" ")
-			for words in interfaceDescription:
-				if "Netname" in words:
-		#			print(words)
-					combo.insert(1,words)
-					counter = 0
-		#			print(combo)
-				if "Circuit" in words:
-					#print (words)
-					combo.insert(2,words)
-					counter += 0
-		#			print(combo)
-					return
-		if (counter >= 4 ):
+
+			if "Netname" in interfaceDescription:
+				#print(interfaceDescription[interfaceDescription.index("Netname") + 1])
+				
+				networkName = interfaceDescription[interfaceDescription.index("Netname") + 1] 
+				networkName = networkName.replace("*","")
+
+				combo.insert(1,networkName)
+				counter = 0
+				#print(combo)
+			if "Circuit" in interfaceDescription:
+				circuitName = interfaceDescription[interfaceDescription.index("Circuit") + 1] 
+				#print (words)
+				if "#" or "*" in circuitName:
+					circuitName = circuitName.replace("*","").replace("#","")
+
+				combo.insert(2,circuitName)
+				counter = 0
+				print(combo)
+				return
+		if (counter >= 5 ):
 			combo[:] = []
-		#	print(combo)
+			print(combo)
 			return
 
 def lookUpName(routerName):
@@ -81,39 +96,56 @@ def checkNetName(i,Netname):
 		execlNetNameCell.color = (255,0,0)
 	
 
-	
-siteFile = open("390 Kent Ave rt", "r")
+listOfFiles = os.listdir("/Users/arvid/Desktop/Router Information")
+
+
+
 combo = []
-for line in siteFile:
-	#find name of rtr
-	if "#" in line:
-		#print(line)
-		routerName = line.split("#")[0].split("_")[0]
-		#print(routerName)
-	if "GigabitEthernet" in line:
-		#print(line.split(" "))
-		gigabit = line.split(" ")[0]
-		combo.insert(0,gigabit)
-		#print(gigabit)
-		#print(combo)
-		findDescription()
-		
-	elif "Serial" in line:
-		#print(line.split(" "))
-		serial = line.split(" ")[0]
-		combo.insert(0,serial)
-		#print(serial)
-		findDescription()
+for routerFile in listOfFiles:
+	print (routerFile)
 
-	if len(combo) == 3:
-		print (combo)
-		break
+	siteFile = open(routerFile, "r")
+	if routerFile.endswith(".txt"):
 
-interface = combo[0]
-Netname = combo[1]
-Circuit = combo[2]
+	#routerName = siteFile.readlines()[-1]
+	#print(routerName)
+		for line in siteFile:
 
-lookUpName(routerName)
+			#find name of rtr
+			
+				#print(routerName)
+			if "GigabitEthernet" in line:
+				#print(line.split(" "))
+				gigabit = line.split(" ")[0]
+				combo.insert(0,gigabit)
+				#print(gigabit)
+				print(combo)
+				findDescription(siteFile,combo)
+				
+			elif "Serial" in line:
+				#print(line.split(" "))
+				serial = line.split(" ")[0]
+				combo.insert(0,serial)
+				#print(serial)
+				print(combo)
+				findDescription(siteFile,combo)
+				
+
+			if len(combo) == 3:
+				interface = combo[0]
+				Netname = combo[1]
+				Circuit = combo[2]
+				print(interface)
+				print(Netname)	
+							
+				print (combo)
+				break
+			else:
+				continue
+
+
+
+		lookUpName(routerName)
 
 
 
