@@ -1,14 +1,15 @@
 import os
 import xlwings as xw
-import subprocess
-import webbrowser
-
-
+import time
+from difflib import SequenceMatcher
 
 
 os.chdir("/Users/arvid/Desktop/Router Information")
 wb = xw.Book("/Users/arvid/Desktop/DOT Circuits tracking.xls")
 sheet = wb.sheets("Circuit & IP info")
+
+SiteNameCombos = {}
+sitesNotMatched = []
 
 
 def findDescription(siteFile,combo):
@@ -32,7 +33,7 @@ def findDescription(siteFile,combo):
 				combo.remove(" ")
 
 			#BIG DEBUGGER!!!!!!!!!!	
-			print(interfaceDescription)
+			#print(interfaceDescription)
 
 			if "Netname" in interfaceDescription:
 				#print(interfaceDescription[interfaceDescription.index("Netname") + 1])
@@ -48,67 +49,85 @@ def findDescription(siteFile,combo):
 				circuitName = circuitName.replace("*","").replace("#","").replace("-","")
 				combo.insert(2,circuitName)
 				lineCounter = 0
+				#print(combo)
 				return
-			elif ("circuit") in interfaceDescription:
+			if ("circuit") in interfaceDescription:
 				circuitName = interfaceDescription[interfaceDescription.index("circuit") + 1] 
 				#print (words)
 				#if "#" or "*" or "-"in circuitName:
 				circuitName = circuitName.replace("*","").replace("#","").replace("-","")
 				combo.insert(2,circuitName)
 				lineCounter = 0
-				return				
-
+				return	
+			elif ""	:
+				pass	
+		
 		#the description is always 3 lines below the start of the file,
 		#if the line counter passes 5, the file doesnt contain the info
 		if (lineCounter >= 5 ):
 			combo[:] = []
 			#print(combo)
 			return
+		else: 
+			continue
 		
 
 
 def lookUpName(routerName):
+	global i
+	numOfMatches = 0
 	for i in range(2,97):
 		cellValue = sheet.range("A" + str(i)).value 
-		print(cellValue)
-		routerName = routerName.replace("-","")
-		#print(routerName)
-		cellValue = cellValue.replace(" ","")
-		if routerName == cellValue:
-			print (routerName + "  " + cellValue)
-			print (i)
-			matchCiruit(i,Circuit)
-			return 
-		else:
-			pass
+		cellValue= cellValue.strip().replace(" ","")
+
+		if cellValue != "None":
+			#print(cellValue)
+
+			ratioOfWord = SequenceMatcher("",routerName, cellValue).ratio()
+			print(numOfMatches)
+			if ratioOfWord > .80:
+				print(routerName + "-->" + cellValue)
+				print(ratioOfWord)
+				#time.sleep(6)
+				numOfMatches += 1 
+				print(numOfMatches)
+				routersMatched.append(routerName)
+				#SiteNameCombos.add({"CRT site name" : routerName , "Excel site name" : cellValue})
+				#print( SiteNameCombos)
+				#time.sleep(10)
+				return
+
+	
+	#for sites in sitesNotMatched :
+	#	print(sites)
+
 
 def matchCiruit(i,Circuit):
 	#print(i)
 	#print(Netname)
 	execlCiruitNameCell = sheet.range("D" + str(i))
 	execlCiruitName = execlCiruitNameCell.value.strip()
-	print (execlCiruitName)
-	if "-" in Circuit:
-		Circuit = Circuit.split("-")[1].strip()
-	print(Circuit)
+	
+	
+	#print("In the router: " + Circuit)
+	#time.sleep(2)
 	if execlCiruitName == Circuit:
-		print("its a match")
+		#print("its a match")
 		execlCiruitNameCell.color = (0,255,0)
 	else:
 		execlCiruitNameCell.color = (255,0,0)
-	checkNetName(i,Netname)
+	
 
 
 
 def checkNetName(i,Netname):
 	execlNetNameCell = sheet.range("B" + str(i))
 	execlNetName = execlNetNameCell.value.strip()
-	Netname = Netname.split("-")[1]
-	print(Netname)	
+	#print(Netname)	
 
 	if "-" in execlNetName:
 		execlNetName = execlNetName.replace("-","")
-		print(execlNetName)
+		#print(execlNetName)
 
 	if execlNetName == Netname:
 		execlNetNameCell.color = (0,255,0)
@@ -118,16 +137,16 @@ def checkNetName(i,Netname):
 
 listOfFiles = os.listdir("/Users/arvid/Desktop/Router Information")
 
-
+routerOnCRT = []
+routersMatched = []
 combo = []
 for routerFile in listOfFiles:
 	
 	if routerFile.endswith(".txt"):
 		siteFile = open(routerFile, "r")
 
-		print (routerFile)
-		#routerName = siteFile.readlines()[-1]
-		#print(routerName)
+		#print (routerFile)
+
 		for line in siteFile:
 			
 				#find name of rtr
@@ -150,23 +169,39 @@ for routerFile in listOfFiles:
 				
 
 			if len(combo) == 3:
-				print('this file is good ' + routerFile)
-				print(combo )
-				combo[:] =[]
-				os.rename("/Users/arvid/Desktop/Router Information/" + routerFile, "/Users/arvid/Desktop/updatedRI/" + routerFile)
-				'''
-				interface = combo[0]
-				Netname = combo[1]
-				Circuit = combo[2]
-				print(interface)
-				print(Netname)			
-				print (combo)
-				break
-				'''
+				#print('this file is good ' + routerFile)
+				#print(combo )
+				try:
+					#os.rename("/Users/arvid/Desktop/Router Information/" + routerFile, "/Users/arvid/Desktop/updatedRI/" + routerFile)
+					routerName = siteFile.readlines()[-1].strip(".txt")
+					routerName = routerName.replace("-","").replace("_","").strip()
+					#routerName = routerName.split(" ")
+					print("Name on router is : " + routerName)	
+					#time.sleep(4)
+					#print(combo)
+					routerOnCRT.append(routerName)
+					interface = combo[0]
+					Netname = combo[1].strip()
+					Circuit = combo[2].strip()
+					combo[:] =[]
+					#print(interface)
+					#print(Netname)	
+					#print(Circuit)		
+					#print (combo)
+
+					lookUpName(routerName)
 
 
+					matchCiruit(i, Circuit)
+					checkNetName(i,Netname)
+					break
+				except AttributeError:
+					continue
 
-		#lookUpName(routerName)
+print(routerOnCRT)
+print(routersMatched)
+
+
 
 
 
